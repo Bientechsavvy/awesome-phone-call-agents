@@ -475,9 +475,15 @@
       };
 
       try {
-        const res = await fetch('/orders', {
+                const res = await fetch('/orders', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'X-API-Key': apiKey },
+          headers: {
+            'Content-Type': 'application/json',
+            'X-API-Key': apiKey,
+            // Only relevant when the server is running CALLE_MODE=live.
+            // Harmless to always send; the server ignores it in dry-run mode.
+            'X-Confirm-Live-Call': 'I_CONFIRM_LIVE_CALL_FOR_THIS_ORDER',
+          },
           body: JSON.stringify(payload),
         });
         if (!res.ok) {

@@ -63,6 +63,10 @@ authorized to dial — this will place real outbound calls. In `.env`, set:
 
 Numbers not on the allowlist are blocked before any call is placed.
 
+Additionally, every individual `POST /orders` request in live mode must
+include `X-Confirm-Live-Call: I_CONFIRM_LIVE_CALL_FOR_THIS_ORDER` — the
+server-level live mode does not, by itself, authorize any single request to
+dial a real number.
 ## Try it
 
 Open **http://localhost:3000** in a browser — that's the dashboard
